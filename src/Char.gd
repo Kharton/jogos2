@@ -5,7 +5,8 @@ class_name Char, "res://assets/heroes/knight/knight_idle_anim_f0.png"
 const friction: float = 0.15
 
 export(int) var acel: int = 40
-export(int) var hp: int = 40
+export(int) var hp: int = 40 setget set_hp
+signal hp_changed(new_hp)
 export(int) var maxSpeed: int = 100
 
 onready var animated_sprite: AnimatedSprite = get_node("AnimatedSprite")
@@ -40,3 +41,8 @@ func flipSprite(vector:Vector2):
 	elif vector.x <0 && !animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 	pass
+
+
+func set_hp(new_hp: int):
+	hp = new_hp
+	emit_signal("hp_changed", new_hp)

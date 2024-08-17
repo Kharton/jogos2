@@ -4,9 +4,11 @@ class_name Enemy, "res://assets/enemies/slime/slime_idle_anim_f0.png"
 
 var path: PoolVector2Array
 
-onready var nav: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
+onready var nav: Navigation2D = get_tree().current_scene.get_node("Rooms")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 onready var timer: Timer = get_node("PathTimer")
+
+export(bool) var fly:bool = false
 
 func chase():
 	if path:
@@ -24,12 +26,14 @@ func _ready():
 	pass # Replace with function body.
 
 
-
 func _on_PathTimer_timeout():
 	if is_instance_valid(player):
-		path = nav.get_simple_path(global_position, player.position)
+		_get_chase()
 	else:
 		timer.stop()
 		path = []
 		direction = Vector2.ZERO
 
+
+func _get_chase():
+	path = nav.get_simple_path(global_position, player.position)

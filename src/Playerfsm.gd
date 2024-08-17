@@ -48,6 +48,10 @@ func _enter_state(_prev: int, new: int) -> void:
 			animation_player.play("move")
 		states.hurt:
 			animation_player.play("hurt")
+			if parent.has_method("cancel_attack"):
+				parent.cancel_attack()
 		states.dead:
 			animation_player.play("dead")
+			if parent.has_method("cancel_attack"):
+				parent.cancel_attack()
 	pass

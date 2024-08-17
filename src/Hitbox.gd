@@ -16,4 +16,12 @@ func ready():
 	assert(coll != null)
 	
 func _on_body_entered(body: PhysicsBody2D):
-	body.take_damage(damage, direction, push)
+	_collide(body)
+
+
+func _collide(body: KinematicBody2D):
+	if body == null or not body.has_method("take_damage"):
+		queue_free()
+	else:
+		body.take_damage(damage, direction,push)
+		

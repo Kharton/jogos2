@@ -1,17 +1,18 @@
-extends Node2D
+extends StaticBody2D
 
+onready var anim: AnimationPlayer = get_node("AnimationPlayer")
+
+var opened: bool = false;
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-func _init() -> void:
-	randomize()
-	var sreenS: Vector2 = OS.get_screen_size()
-	var windowS: Vector2 = OS.get_real_window_size()
-	
-	OS.window_position = sreenS *0.5 - windowS *0.5
-	pass
 
+func open():
+	if opened:
+		return
+	anim.play("open")
+	opened = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

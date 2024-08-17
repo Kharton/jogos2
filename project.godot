@@ -29,6 +29,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/fsm.gd"
 }, {
+"base": "Enemy",
+"class": "FlyingEnemy",
+"language": "GDScript",
+"path": "res://src/FlyingEnemy.gd"
+}, {
+"base": "GroundEnemy",
+"class": "Goblin",
+"language": "GDScript",
+"path": "res://src/Goblin.gd"
+}, {
+"base": "Enemy",
+"class": "GroundEnemy",
+"language": "GDScript",
+"path": "res://src/GroundEnemy.gd"
+}, {
 "base": "Area2D",
 "class": "HitBox",
 "language": "GDScript",
@@ -38,14 +53,23 @@ _global_script_classes=[ {
 "class": "MovingFiniteStateMachine",
 "language": "GDScript",
 "path": "res://src/Playerfsm.gd"
+}, {
+"base": "MovingFiniteStateMachine",
+"class": "RangedFiniteStateMachine",
+"language": "GDScript",
+"path": "res://src/RangedFms.gd"
 } ]
 _global_script_class_icons={
 "Char": "res://assets/heroes/knight/knight_idle_anim_f0.png",
 "DamagableChar": "res://assets/heroes/knight/knight_idle_anim_f0.png",
 "Enemy": "res://assets/enemies/slime/slime_idle_anim_f0.png",
 "FiniteStateMachine": "",
+"FlyingEnemy": "res://assets/enemies/flying creature/fly_anim_f0.png",
+"Goblin": "res://assets/enemies/goblin/goblin_idle_anim_f0.png",
+"GroundEnemy": "res://assets/enemies/slime/slime_idle_anim_f0.png",
 "HitBox": "",
-"MovingFiniteStateMachine": ""
+"MovingFiniteStateMachine": "",
+"RangedFiniteStateMachine": ""
 }
 
 [application]

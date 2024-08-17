@@ -3,6 +3,7 @@ extends DamagableChar
 onready var weapon: Node2D = get_node("Weapon")
 onready var weaponAnimation: AnimationPlayer = get_node("Weapon/WeaponAnimationPlayer")
 onready var weaponHitbox: Area2D = get_node("Weapon/Node2D/Sprite/HitBox")
+onready var particles: Particles2D = get_node("Weapon/Node2D/Sprite/ChargeParticles")
 
 
 func _ready():
@@ -39,7 +40,36 @@ func input() -> void:
 	if Input.is_action_pressed("ui_up"):
 		direction += Vector2.UP
 	
-	if Input.is_action_pressed("ui_attack") && !weaponAnimation.is_playing():
-		weaponAnimation.play("attack")
-
+	if Input.is_action_pressed("ui_attack"):
+		if weaponAnimation.current_animation != "charge" && !weaponAnimation.is_playing():
+			weaponAnimation.play("charge")
+	elif Input.is_action_just_released("ui_attack"):
+		if particles.emitting:
+			weaponAnimation.play("circular_attack")
+		elif weaponAnimation.is_playing() && weaponAnimation.current_animation == "charge":
+			weaponAnimation.play("attack")
+			
 	pass
+	
+func cancel_attack():
+	weaponAnimation.play("cancel_attack")
+	
+
+func take_damage(damage: int, dir:Vector2, push:int):
+	if fsm.state == fsm.states.hurt:
+		return
+		
+	self.hp -= damage
+	velocity += dir * push
+	
+	if hp > 0:
+		fsm.set_state(fsm.states.hurt)
+	else:
+		fsm.set_state(fsm.states.dead)
+	pass
+	
+func switch_camera():
+	var main:Camera2D = get_parent().get_node("Camera2D")
+	main.position = position
+	main.current = true
+	get_node("Camera2D").current = false
