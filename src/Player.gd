@@ -1,33 +1,25 @@
 extends DamagableChar
 
-onready var weapon: Node2D = get_node("Weapon")
-onready var weaponAnimation: AnimationPlayer = get_node("Weapon/WeaponAnimationPlayer")
-onready var weaponHitbox: Area2D = get_node("Weapon/Node2D/Sprite/HitBox")
-onready var particles: Particles2D = get_node("Weapon/Node2D/Sprite/ChargeParticles")
+var weapon: Node2D 
+
+onready var weapons: Node2D = get_node("Weapons")
+
+enum {UP, DOWN}
 
 
 func _ready():
-	pass # Replace with function body.
-
+	weapon = weapons.get_child(0)
 
 func _process(_delta:float) -> void:
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
 	flipSprite(mouse_direction)
+	if weapon.has_method("move"):
+		weapon.move(mouse_direction)
 	
-	weapon.rotation = mouse_direction.angle()
-	
-	weaponHitbox.direction = mouse_direction
-	
-	
-	if weapon.scale.y == 1 && mouse_direction.x < 0:
-		weapon.scale.y = -1
-	elif weapon.scale.y == -1 && mouse_direction.x > 0:
-		weapon.scale.y = 1
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func input() -> void:
 	direction = Vector2.ZERO
 	
@@ -39,20 +31,33 @@ func input() -> void:
 		direction += Vector2.RIGHT
 	if Input.is_action_pressed("ui_up"):
 		direction += Vector2.UP
-	
-	if Input.is_action_pressed("ui_attack"):
-		if weaponAnimation.current_animation != "charge" && !weaponAnimation.is_playing():
-			weaponAnimation.play("charge")
-	elif Input.is_action_just_released("ui_attack"):
-		if particles.emitting:
-			weaponAnimation.play("circular_attack")
-		elif weaponAnimation.is_playing() && weaponAnimation.current_animation == "charge":
-			weaponAnimation.play("attack")
-			
-	pass
+		
+	if !weapon.is_busy():
+		if Input.is_action_pressed("ui_switch_up_weapon"):
+			_switch_weapon(UP)
+		elif Input.is_action_pressed("ui_switch_down_weapon"):
+			_switch_weapon(DOWN)
+		
+	if weapon.has_method("get_input"):
+		weapon.get_input()
 	
 func cancel_attack():
-	weaponAnimation.play("cancel_attack")
+	weapon.cancel_attack()
+	
+func _switch_weapon(dir:int):
+	var i: int = weapon.get_index()
+	if dir == UP:
+		i -= 1
+		if i < 0:
+			i = weapons.get_child_count() -1
+	else:
+		i += 1
+		if i >= weapons.get_child_count():
+			i = 0
+	weapon.hide()
+	weapon = weapons.get_child(i)
+	weapon.show()
+	#ui_switch_down_weapon
 	
 
 func take_damage(damage: int, dir:Vector2, push:int):

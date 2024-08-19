@@ -300,6 +300,7 @@ script = ExtResource( 2 )
 acel = 20
 hp = 2
 maxSpeed = 40
+fly = false
 projSpeed = 70
 
 [node name="AnimatedSprite" parent="." index="0"]
