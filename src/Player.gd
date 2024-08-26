@@ -69,8 +69,10 @@ func take_damage(damage: int, dir:Vector2, push:int):
 	
 	if hp > 0:
 		fsm.set_state(fsm.states.hurt)
+		GLOBAL.play_sound("sfx_hit_player")
 	else:
 		fsm.set_state(fsm.states.dead)
+		GLOBAL.play_sound("sfx_dead")
 	pass
 	
 func switch_camera():

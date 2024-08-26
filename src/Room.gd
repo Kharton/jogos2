@@ -20,6 +20,9 @@ func _ready():
 	qtd= enemies.get_child_count()
 	
 func _open_doors():
+	if doorSpace.get_child_count() <= 0:
+		pass
+	
 	for door in doorSpace.get_children():
 		door.open()
 

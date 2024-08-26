@@ -108,6 +108,10 @@ config/name="Magia Perdida"
 run/main_scene="res://scn/Jogo.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GLOBAL="*res://scn/canvas.tscn"
+
 [display]
 
 window/size/width=480

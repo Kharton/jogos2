@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sfx_jump_fall.ogg-d831b8ab5c639e5aa70f724ac809ba19.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/sfx_jump_fall.ogg"
+dest_files=[ "res://.import/sfx_jump_fall.ogg-d831b8ab5c639e5aa70f724ac809ba19.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

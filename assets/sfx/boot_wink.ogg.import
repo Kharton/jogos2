@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boot_wink.ogg-c5c63ababb97e409fab08b3e9bf05110.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/boot_wink.ogg"
+dest_files=[ "res://.import/boot_wink.ogg-c5c63ababb97e409fab08b3e9bf05110.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

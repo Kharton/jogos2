@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 4 )
-shader_param/active = true
+shader_param/active = false
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 4 )
@@ -353,7 +353,6 @@ material = SubResource( 5 )
 [node name="CollisionShape2D" parent="Node2D/Sprite/HitBox" index="0"]
 position = Vector2( 9.16174, 8.84518 )
 shape = SubResource( 6 )
-disabled = false
 
 [node name="Effect" type="Sprite" parent="." index="1"]
 visible = false
