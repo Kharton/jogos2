@@ -42,3 +42,32 @@ func play_sound(node_name:String) -> void:
 	if get_node("sfx/"+node_name).is_playing():
 		get_node("sfx/"+node_name).stop()
 	get_node("sfx/"+node_name).play()
+
+func fade_scene(start:int, end:int, time:float) -> Node:
+	$color.modulate = Color(0,0,0,start)
+	$color.show()
+
+	$tween.stop_all()
+	$tween.interpolate_property($color, "modulate", Color(0,0,0,start), Color(0,0,0,end), time, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$tween.start()
+
+	return $tween
+
+func scene_fade_in(time:float) -> Node:
+	return fade_scene(1, 0, time)
+	
+func scene_fade_out(time:float) -> Node:
+	get_tree().paused = true
+	return fade_scene(0, 1, time)
+
+func restart(fade_out:float = 1, fade_in:float = .5) -> void:
+
+	scene_fade = scene_fade_out(fade_out)
+
+	file_path = "res://scn/Jogo.tscn"
+	if file.file_exists(file_path):
+		var __ = get_tree().change_scene(file_path)
+
+	scene_fade = scene_fade_in(fade_in)
+	$color.hide()
+	get_tree().paused = false

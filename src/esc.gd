@@ -38,6 +38,6 @@ func _process(_delta:float) -> void:
 			0:
 				pass
 			1:
-				#GLOBAL.next_scene("title")
-			#2:
+				GLOBAL.restart()
+			2:
 				get_tree().quit()
