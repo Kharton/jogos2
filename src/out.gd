@@ -9,7 +9,7 @@ func _ready() -> void:
 	yield(get_tree().create_timer(2.0), "timeout")
 	pause = false
 
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	if !pause:
 		var up:bool = Input.is_action_just_pressed("ui_up")
 		var down:bool = Input.is_action_just_pressed("ui_down")
@@ -18,4 +18,4 @@ func _process(delta:float) -> void:
 
 		if up || down || left || right:
 			GLOBAL.change_music("music_title")
-			GLOBAL.next_scene("title", .5, .25)
+			GLOBAL.next_scene("Jogo", .5, .25)
