@@ -21,7 +21,7 @@ func _ready():
 	
 func _open_doors():
 	if doorSpace.get_child_count() <= 0:
-		pass
+		GLOBAL.out()
 	
 	for door in doorSpace.get_children():
 		door.open()

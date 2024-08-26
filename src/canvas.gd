@@ -71,3 +71,16 @@ func restart(fade_out:float = 1, fade_in:float = .5) -> void:
 	scene_fade = scene_fade_in(fade_in)
 	$color.hide()
 	get_tree().paused = false
+
+
+func out(fade_out:float = 1, fade_in:float = .5) -> void:
+
+	scene_fade = scene_fade_out(fade_out)
+
+	file_path = "res://scn/out.tscn"
+	if file.file_exists(file_path):
+		var __ = get_tree().change_scene(file_path)
+
+	scene_fade = scene_fade_in(fade_in)
+	$color.hide()
+	get_tree().paused = false

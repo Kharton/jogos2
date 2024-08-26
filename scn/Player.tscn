@@ -189,14 +189,17 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.3, 0.4, 0.401 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "switch_camera"
 }, {
 "args": [  ],
 "method": "queue_free"
+}, {
+"args": [  ],
+"method": "evaporate"
 } ]
 }
 tracks/4/type = "value"
@@ -343,7 +346,6 @@ current = true
 [node name="Weapons" type="Node2D" parent="." index="5"]
 
 [node name="staff" parent="Weapons" index="0" instance=ExtResource( 5 )]
-projSpeed = 100
 
 [node name="Sword" parent="Weapons" index="1" instance=ExtResource( 4 )]
 visible = false

@@ -80,3 +80,7 @@ func switch_camera():
 	main.position = position
 	main.current = true
 	get_node("Camera2D").current = false
+	
+	
+func evaporate():
+	GLOBAL.out()
